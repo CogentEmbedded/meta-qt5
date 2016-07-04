@@ -34,7 +34,7 @@ RDEPENDS_${PN}-tools += "perl"
 # PACKAGECONFIG is kept rather minimal for people who don't need
 # stuff like webkit (and it's easier to add options than remove)
 
-PACKAGECONFIG_GL ?= "${@base_contains('DISTRO_FEATURES', 'opengl', 'gl', '', d)}"
+PACKAGECONFIG_GL ?= "${@base_contains('DISTRO_FEATURES', 'opengl', 'gles2', '', d)}"
 PACKAGECONFIG_FB ?= "${@base_contains('DISTRO_FEATURES', 'directfb', 'directfb', '', d)}"
 PACKAGECONFIG_X11 ?= "${@base_contains('DISTRO_FEATURES', 'x11', 'xcb xvideo xsync xshape xrender xrandr xfixes xinput2 xinput xinerama xcursor glib gtkstyle xkb', '', d)}"
 PACKAGECONFIG_FONTS ?= ""
@@ -58,6 +58,14 @@ PACKAGECONFIG ?= " \
     ${PACKAGECONFIG_SYSTEM} \
     ${PACKAGECONFIG_MULTIMEDIA} \
     ${PACKAGECONFIG_DISTRO} \
+    sql-sqlite \
+    sql-sqlite2 \
+    openssl \
+    icu \
+    accessibility \
+    examples \
+    alsa \
+    glib \
 "
 
 PACKAGECONFIG[release] = "-release,-debug"
@@ -261,3 +269,5 @@ sysroot_stage_dirs_append() {
 }
 
 SRCREV = "f7f4dde80e13ff1c05a9399297ffb746ab505e62"
+
+DEPENDS += " gles-user-module"

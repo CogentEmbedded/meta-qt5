@@ -16,7 +16,7 @@ LIC_FILES_CHKSUM = " \
 # libxkbcommon isn't mandatory make it easier to remove by .bbappend
 # (e.g. for building qtwayland with danny which doesn't have libxkbcommon in oe-core).
 XKB_DEPENDS = "libxkbcommon xproto"
-DEPENDS += "qtbase qtdeclarative wayland wayland-native qtwayland-native ${XKB_DEPENDS}"
+DEPENDS += "qtbase qtdeclarative wayland wayland-native qtwayland-native ${XKB_DEPENDS} gles-user-module"
 
 QT_WAYLAND_CONFIG ?= "wayland-compositor"
 QT_WAYLAND_DEFINES ?= ""
@@ -37,5 +37,6 @@ FILES_${PN}-plugins-dbg += " \
 SRC_URI += " \
     file://0001-examples-wayland-include-server-buffer-only-when-bui.patch \
 "
-
+SRC_URI_append = "${@base_contains('DISTRO_FEATURES', 'wayland','file://0001-remove-xcomposite-and-drm.patch','',d)} \
+"
 SRCREV = "bd21beea9a433a8878c0e719a7bfb8c14df47840"
