@@ -1,6 +1,9 @@
 require qt5.inc
 require qt5-git.inc
 
+QT_MODULE_BRANCH = "5.7.1"
+PV = "5.7.1+git${SRCPV}"
+
 DEPENDS += "qtbase qtdeclarative wayland wayland-native qtwayland-native"
 
 LICENSE = "GFDL-1.3 & BSD & ( GPL-3.0 & The-Qt-Company-GPL-Exception-1.0 | The-Qt-Company-Commercial ) & ( GPL-2.0+ | LGPL-3.0 | The-Qt-Company-Commercial )"
@@ -46,7 +49,7 @@ FILES_${PN}-plugins-dbg += " \
 
 SRC_URI += " \
     file://0001-examples-wayland-include-server-buffer-only-when-bui.patch \
-    file://0001-Fix-building-of-QWaylandIntegration-if-some-Qt5-feat.patch \
+    file://0001-Add-QT_WAYLAND_DISPLAY-variable-to-choose-display.patch \
 "
 
-SRCREV = "a172672484b9496819e588b51ac2ff9fb4a21941"
+SRCREV = "4b23163fb64a5a8d05320dd006962cf2bcefcd84"

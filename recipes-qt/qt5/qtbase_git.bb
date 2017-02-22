@@ -1,6 +1,9 @@
 require qt5.inc
 require qt5-git.inc
 
+QT_MODULE_BRANCH = "5.7.1"
+PV = "5.7.1+git${SRCPV}"
+
 LICENSE = "GFDL-1.3 & BSD & ( GPL-3.0 & The-Qt-Company-GPL-Exception-1.0 | The-Qt-Company-Commercial ) & ( GPL-2.0+ | LGPL-3.0 | The-Qt-Company-Commercial )"
 LIC_FILES_CHKSUM = " \
     file://LICENSE.LGPL3;md5=e6a600fd5e1d9cbde2d983680233ad02 \
@@ -26,7 +29,6 @@ SRC_URI += "\
     file://0008-configure-paths-for-target-qmake-properly.patch \
     file://0009-Reorder-EGL-libraries-from-pkgconfig-and-defaults.patch \
     file://0010-Pretend-Qt5-wasn-t-found-if-OE_QMAKE_PATH_EXTERNAL_H.patch \
-    file://0013-Fix-build-with-QT_NO_OPENGL.patch \
 "
 
 DEPENDS += "qtbase-native"
@@ -230,4 +232,4 @@ do_install_append() {
 
 RRECOMMENDS_${PN}-plugins += "${@bb.utils.contains('DISTRO_FEATURES', 'x11', 'libx11-locale', '', d)}"
 
-SRCREV = "69b43e74d78e050cf5e40197acafa4bc9f90c0bd"
+SRCREV = "db6c31af0177025f178cb42d5febbdc47dc87778"

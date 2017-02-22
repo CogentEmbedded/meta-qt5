@@ -1,6 +1,9 @@
 require qt5-native.inc
 require qt5-git.inc
 
+QT_MODULE_BRANCH = "5.7.1"
+PV = "5.7.1+git${SRCPV}"
+
 LICENSE = "GFDL-1.3 & BSD & ( GPL-3.0 & The-Qt-Company-GPL-Exception-1.0 | The-Qt-Company-Commercial ) & ( GPL-2.0+ | LGPL-3.0 | The-Qt-Company-Commercial )"
 LIC_FILES_CHKSUM = " \
     file://LICENSE.LGPL3;md5=e6a600fd5e1d9cbde2d983680233ad02 \
@@ -18,7 +21,6 @@ DEPENDS = "qtbase-native wayland-native"
 
 SRC_URI += " \
     file://0001-Install-the-qtwaylandscanner-tool-to-the-native-side.patch \
-    file://0001-Fix-building-of-QWaylandIntegration-if-some-Qt5-feat.patch \
 "
 
 do_configure() {
@@ -29,4 +31,5 @@ do_install() {
     oe_runmake install INSTALL_ROOT=${D}
 }
 
-SRCREV = "a172672484b9496819e588b51ac2ff9fb4a21941"
+SRCREV = "4b23163fb64a5a8d05320dd006962cf2bcefcd84"
+

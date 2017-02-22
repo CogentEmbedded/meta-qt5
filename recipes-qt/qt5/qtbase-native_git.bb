@@ -19,6 +19,9 @@ LIC_FILES_CHKSUM = " \
 require qt5-native.inc
 require qt5-git.inc
 
+QT_MODULE_BRANCH = "5.7.1"
+PV = "5.7.1+git${SRCPV}"
+
 # common for qtbase-native, qtbase-nativesdk and qtbase
 SRC_URI += "\
     file://0001-Add-linux-oe-g-platform.patch \
@@ -123,4 +126,4 @@ do_install() {
     ln -sf syncqt.pl ${D}${OE_QMAKE_PATH_QT_BINS}/syncqt
 }
 
-SRCREV = "69b43e74d78e050cf5e40197acafa4bc9f90c0bd"
+SRCREV = "db6c31af0177025f178cb42d5febbdc47dc87778"
