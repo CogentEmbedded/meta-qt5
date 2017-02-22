@@ -19,9 +19,6 @@ LIC_FILES_CHKSUM = " \
 require qt5-native.inc
 require qt5-git.inc
 
-QT_MODULE_BRANCH = "5.7.1"
-PV = "5.7.1+git${SRCPV}"
-
 # common for qtbase-native, qtbase-nativesdk and qtbase
 SRC_URI += "\
     file://0001-Add-linux-oe-g-platform.patch \

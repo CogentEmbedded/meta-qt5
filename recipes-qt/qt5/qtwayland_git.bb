@@ -1,9 +1,6 @@
 require qt5.inc
 require qt5-git.inc
 
-QT_MODULE_BRANCH = "5.7.1"
-PV = "5.7.1+git${SRCPV}"
-
 DEPENDS += "qtbase qtdeclarative wayland wayland-native qtwayland-native"
 
 LICENSE = "GFDL-1.3 & BSD & ( GPL-3.0 & The-Qt-Company-GPL-Exception-1.0 | The-Qt-Company-Commercial ) & ( GPL-2.0+ | LGPL-3.0 | The-Qt-Company-Commercial )"
