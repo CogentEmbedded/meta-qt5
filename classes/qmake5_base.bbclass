@@ -32,7 +32,7 @@ EXTRA_OEMAKE = " \
 
 OE_QMAKESPEC = "${QMAKE_MKSPEC_PATH_NATIVE}/mkspecs/${OE_QMAKE_PLATFORM_NATIVE}"
 OE_XQMAKESPEC = "${QMAKE_MKSPEC_PATH}/mkspecs/${OE_QMAKE_PLATFORM}"
-OE_QMAKE_QMAKE = "${STAGING_BINDIR_NATIVE}${QT_DIR_NAME}/qmake"
+OE_QMAKE_QMAKE = "${OE_QMAKE_PATH_EXTERNAL_HOST_BINS}/qmake"
 OE_QMAKE_COMPILER = "${CC}"
 OE_QMAKE_CC = "${CC}"
 OE_QMAKE_CFLAGS = "${CFLAGS}"
@@ -161,6 +161,9 @@ qmake5_base_do_configure () {
 qmake5_base_native_do_install() {
     oe_runmake install INSTALL_ROOT=${D}
     find "${D}" -ignore_readdir_race -name "*.la" -delete
+    if ls ${D}${libdir}/pkgconfig/Qt5*.pc >/dev/null 2>/dev/null; then
+        sed -i "s@-L${STAGING_LIBDIR}@-L\${libdir}@g" ${D}${libdir}/pkgconfig/Qt5*.pc
+    fi
 }
 
 qmake5_base_nativesdk_do_install() {
@@ -168,6 +171,9 @@ qmake5_base_nativesdk_do_install() {
     find . -name "Makefile*" | xargs -r sed -i "s,(INSTALL_ROOT)${STAGING_DIR_HOST},(INSTALL_ROOT),g"
 
     oe_runmake install INSTALL_ROOT=${D}
+    if ls ${D}${libdir}/pkgconfig/Qt5*.pc >/dev/null 2>/dev/null; then
+        sed -i "s@-L${STAGING_LIBDIR}@-L\${libdir}@g" ${D}${libdir}/pkgconfig/Qt5*.pc
+    fi
 }
 
 qmake5_base_do_install() {
@@ -190,5 +196,8 @@ qmake5_base_do_install() {
             rmdir ${TMP}
             TMP=`dirname ${TMP}`;
         done
+    fi
+    if ls ${D}${libdir}/pkgconfig/Qt5*.pc >/dev/null 2>/dev/null; then
+        sed -i "s@-L${STAGING_LIBDIR}@-L\${libdir}@g" ${D}${libdir}/pkgconfig/Qt5*.pc
     fi
 }
