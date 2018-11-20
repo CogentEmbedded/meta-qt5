@@ -32,6 +32,7 @@ RDEPENDS_${PN} += " \
     ${@bb.utils.contains('DISTRO_FEATURES', 'opengl', 'qt3d-dev', '', d)} \
     ${@bb.utils.contains('DISTRO_FEATURES', 'opengl', 'qt3d-mkspecs', '', d)} \
     ${@bb.utils.contains('DISTRO_FEATURES', 'opengl', 'qt3d-qmlplugins', '', d)} \
+    ${@bb.utils.contains('DISTRO_FEATURES', 'opengl', 'qt3d-runtime', '', d)} \
     qtbase-dev \
     qtbase-mkspecs \
     qtbase-plugins \
