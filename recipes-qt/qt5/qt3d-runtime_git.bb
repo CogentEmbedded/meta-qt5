@@ -16,3 +16,5 @@ QT_GIT_PROJECT = "qt3dstudio"
 PV = "2.0+git${SRCPV}"
 
 SRCREV = "ed19232a75b371727c76a9ad8a56f211a0b827ec"
+
+BBCLASSEXTEND += "native nativesdk"
