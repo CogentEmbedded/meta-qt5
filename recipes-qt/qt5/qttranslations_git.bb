@@ -1,15 +1,19 @@
 require qt5.inc
 require qt5-git.inc
 
-LICENSE = "(LGPL-2.1 & The-Qt-Company-Qt-LGPL-Exception-1.1 | LGPL-3.0)"
+LICENSE = "GPL-3.0 & The-Qt-Company-GPL-Exception-1.0 | The-Qt-Company-Commercial"
 LIC_FILES_CHKSUM = " \
-    file://LICENSE.LGPLv21;md5=58a180e1cf84c756c29f782b3a485c29 \
-    file://LICENSE.LGPLv3;md5=b8c75190712063cde04e1f41b6fdad98 \
-    file://LICENSE.GPLv3;md5=40f9bf30e783ddc201497165dfb32afb \
-    file://LGPL_EXCEPTION.txt;md5=9625233da42f9e0ce9d63651a9d97654 \
+    file://LICENSE.GPL3-EXCEPT;md5=763d8c535a234d9a3fb682c7ecb6c073 \
 "
 
 DEPENDS += "qtbase qttools-native"
+
+do_install_append() {
+    # remove qtquick1 translations - qtquick1 is gone
+    for transfile in `find ${D}/${OE_QMAKE_PATH_TRANSLATIONS} -name qtquick1_*.qm -o -name qt_*.qm ! -name qt_help_*.qm`; do
+        rm $transfile
+    done
+}
 
 PACKAGES =. " \
     ${PN}-assistant \
@@ -25,13 +29,10 @@ PACKAGES =. " \
     ${PN}-qtwebsockets \
     ${PN}-qtwebengine \
     ${PN}-qtxmlpatterns \
-    ${PN}-qtconfig \
-    ${PN}-qtquick1 \
     ${PN}-qtscript \
     ${PN}-qtserialport \
     ${PN}-qtbase \
     ${PN}-qthelp \
-    ${PN}-qt \
 "
 
 FILES_${PN}-assistant = " \
@@ -86,14 +87,6 @@ FILES_${PN}-qtxmlpatterns = " \
     ${OE_QMAKE_PATH_TRANSLATIONS}/qtxmlpatterns_*.qm \
 "
 
-FILES_${PN}-qtconfig = " \
-    ${OE_QMAKE_PATH_TRANSLATIONS}/qtconfig_*.qm \
-"
-
-FILES_${PN}-qtquick1 = " \
-    ${OE_QMAKE_PATH_TRANSLATIONS}/qtquick1_*.qm \
-"
-
 FILES_${PN}-qtscript = " \
     ${OE_QMAKE_PATH_TRANSLATIONS}/qtscript_*.qm \
 "
@@ -110,8 +103,4 @@ FILES_${PN}-qthelp = " \
     ${OE_QMAKE_PATH_TRANSLATIONS}/qt_help_*.qm \
 "
 
-FILES_${PN}-qt = " \
-    ${OE_QMAKE_PATH_TRANSLATIONS}/qt_*.qm \
-"
-
-SRCREV = "ce85e4ee4ee22e5dea3b44707a27dab44319708e"
+SRCREV = "60de15a0e0121096239cf6031250d2862e77971d"
