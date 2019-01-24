@@ -48,7 +48,7 @@ EXTRA_OECMAKE += " \
 "
 
 PACKAGECONFIG ??= "qtlocation qtmultimedia qtsensors qtwebchannel \
-    ${@bb.utils.filter('DISTRO_FEATURES', 'x11', d)} \
+    ${@bb.utils.contains('DISTRO_FEATURES', 'x11', 'x11', '',  d)} \
     fontconfig \
 "
 
